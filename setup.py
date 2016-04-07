@@ -10,7 +10,7 @@ setup(name='Labyrinth',
       url='http://people.gnome.org/~dscorgie/labyrinth.html',
       packages=['labyrinth_lib'],
       scripts=['labyrinth'],
-      data_files=[('share/labyrinth', ['data/labyrinth.glade', 'data/labyrinth-ui.xml'])],
+      data_files=[('/usr/share/labyrinth', ['data/labyrinth.glade', 'data/labyrinth-ui.xml'])],
       requires=['PyGTK'],
       classifiers = [
         'Environment :: X11 Applications :: GTK',

@@ -65,7 +65,7 @@ setup(
     windows = [
         {
             "script": "src\\labyrinth.py",
-            "icon_resources": [(1, "Windows\labyrinth.ico")]
+            "icon_resources": [(1, "Windows\labyrinth-256.ico"), (2, "Windows\labyrinth-48.ico"), (3, "Windows\labyrinth-32.ico"), (4, "Windows\labyrinth-24.ico"), (2, "Windows\labyrinth-16.ico")]
         }],
                 options = opts,
                 data_files=[
