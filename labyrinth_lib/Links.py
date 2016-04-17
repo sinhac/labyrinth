@@ -29,10 +29,19 @@ import gtk
 import BaseThought
 import utils
 
-
 def norm(x, y):
     mod = math.sqrt(abs((x[0]**2 - y[0]**2) + (x[1]**2 - y[1]**2)))
     return [abs(x[0]-y[0]) / (mod), abs(x[1] - y[1]) / (mod)]
+    
+# adapted from here:
+# http://kapo-cpp.blogspot.com/2008/10/drawing-arrows-with-cairo.html
+def arrow_vertices(start, end, arrow_length = 20.0, arrow_degrees = math.pi / 8):
+    angle = math.atan2(end[1] - start[1], end[0] - start[0]) + math.pi
+    x1 = end[0] + arrow_length * math.cos(angle - arrow_degrees);
+    y1 = end[1] + arrow_length * math.sin(angle - arrow_degrees);
+    x2 = end[0] + arrow_length * math.cos(angle + arrow_degrees);
+    y2 = end[1] + arrow_length * math.sin(angle + arrow_degrees);
+    return ((x1, y1), (x2, y2))
 
 class Link (gobject.GObject):
     __gsignals__ = dict (select_link = (gobject.SIGNAL_RUN_FIRST,
@@ -125,16 +134,26 @@ class Link (gobject.GObject):
             return
         cwidth = context.get_line_width ()
         context.set_line_width (self.strength)
+        
+        # drawing arrowhead
+        arrow_coords = arrow_vertices(self.start, self.end)
+        context.move_to(self.end[0], self.end[1])
+        context.line_to(arrow_coords[0][0], arrow_coords[0][1])
+        context.stroke()
+        context.move_to(self.end[0], self.end[1])
+        context.line_to(arrow_coords[1][0], arrow_coords[1][1])
+        context.stroke()
+        
         context.move_to (self.start[0], self.start[1])
-
+        
         if utils.use_bezier_curves:
             dx = self.end[0] - self.start[0]
             x2 = self.start[0] + dx / 2.0
             x3 = self.end[0] - dx / 2.0
-            context.curve_to(x2, self.start[1], x3, self.end[1], self.end[0], self.end[1])
+            context.curve_to (x2, self.start[1], x3, self.end[1], self.end[0], self.end[1])
         else:
-            context.line_to (self.end[0], self.end[1])
-
+            context.line_to(self.end[0], self.end[1])
+        
         if self.selected:
             color = utils.selected_colors["bg"]
             context.set_source_rgb (color[0], color[1], color[2])
