@@ -114,7 +114,7 @@ class BaseThought (gobject.GObject):
         self.element = save.createElement (elem_type)
         self.element.appendChild (extended_elem)
 
-    # These are self-explanitory.  You probably don't want to
+    # These are self-explanatory.  You probably don't want to
     # overwrite these methods, unless you have a very good reason
     def get_save_element (self):
         return self.element
@@ -178,7 +178,7 @@ class BaseThought (gobject.GObject):
 
     # All the rest of these should be handled within your thought
     # type, supposing you actually want to handle them.
-    # You almost certianly do want to ;)
+    # You almost certainly do want to ;)
     def process_button_down (self, event, mode, transformed):
         return False
 

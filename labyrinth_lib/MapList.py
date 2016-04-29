@@ -93,7 +93,7 @@ class MapList(object):
     tree_view_model = gtk.ListStore(int, str, str, str, 'gboolean')
 
     def __init__(self):
-        raise Exception("This class is a singleton full of classmethods, dont instantiate it.")
+        raise Exception("This class is a singleton full of classmethods, don't instantiate it.")
 
     @classmethod
     def load_all_from_dir(cls,dir):

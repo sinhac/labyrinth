@@ -1008,7 +1008,7 @@ class MMapArea (gtk.DrawingArea):
         if len(self.selected) == 0:
             return
         action = UndoManager.UndoAction (self, UNDO_DELETE, self.undo_deletion, copy.copy(self.selected))
-        # delete_thought as a callback adds it's own undo action.  Block that here
+        # delete_thought as a callback adds its own undo action.  Block that here
         self.undo.block ()
         tmp = self.selected
         t = tmp.pop()

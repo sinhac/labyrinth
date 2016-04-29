@@ -571,7 +571,7 @@ class DrawingThought (BaseThought.ResizableThought):
             # 2 cases: 1. The click was within the main area
             #                  2. The click was near the border
             # In the first case, we handle as normal
-            # In the second case, we want to intercept all the fun thats
+            # In the second case, we want to intercept all the fun that's
             # going to happen so we can resize the thought
             if abs (coords[0] - self.ul[0]) < self.sensitive:
                 # its near the top edge somewhere

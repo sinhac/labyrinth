@@ -54,7 +54,7 @@ class UndoManager:
     ''' A basic manager for undoing and redoing actions.\
             Doesn't do anything itself, instead it marshals \
             all the minion classes to do its bidding.  Any class \
-            can add items to its lists and they're corresponding \
+            can add items to its lists and their corresponding \
             methods will be called if and when needed.  The \
             manager doesn't care what you give it, so long as
             it has a method to call and an owner'''
@@ -78,7 +78,7 @@ class UndoManager:
     def block (self):
         ''' Used as generally, when an undo is performed a \
         signal will be emitted that causes an undo action \
-        to be added.  Use this to block tht from happening \
+        to be added.  Use this to block that from happening \
         To add actions again, call unblock'''
         self.blocked = True
 
@@ -213,7 +213,7 @@ class UndoManager:
         self.undo_list.append (UndoAction (owner, TRANSFORM_CANVAS, cb, orig_zoom,
                                                                            final_zoom, orig_trans, final_trans))
 
-    def peak (self):
+    def peek (self):
         if len (self.undo_list) > 0:
             return self.undo_list[-1]
         else:
