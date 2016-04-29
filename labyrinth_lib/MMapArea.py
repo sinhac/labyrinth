@@ -343,7 +343,7 @@ class MMapArea (gtk.DrawingArea):
             for l in self.links:
                 if l.uses (thought):
                     act.add_arg (l)
-            if self.undo.peak ().undo_type == UNDO_DELETE_SINGLE:
+            if self.undo.peek ().undo_type == UNDO_DELETE_SINGLE:
                 last_action = self.undo.pop ()
                 action = UndoManager.UndoAction (self, UNDO_COMBINE_DELETE_NEW, self.undo_joint_cb, \
                     last_action, act)
