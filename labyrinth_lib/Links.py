@@ -136,13 +136,14 @@ class Link (gobject.GObject):
         context.set_line_width (self.strength)
         
         # drawing arrowhead
-        arrow_coords = arrow_vertices(self.start, self.end)
-        context.move_to(self.end[0], self.end[1])
-        context.line_to(arrow_coords[0][0], arrow_coords[0][1])
-        context.stroke()
-        context.move_to(self.end[0], self.end[1])
-        context.line_to(arrow_coords[1][0], arrow_coords[1][1])
-        context.stroke()
+        if utils.use_arrowheads:
+            arrow_coords = arrow_vertices(self.start, self.end)
+            context.move_to(self.end[0], self.end[1])
+            context.line_to(arrow_coords[0][0], arrow_coords[0][1])
+            context.stroke()
+            context.move_to(self.end[0], self.end[1])
+            context.line_to(arrow_coords[1][0], arrow_coords[1][1])
+            context.stroke()
         
         context.move_to (self.start[0], self.start[1])
         

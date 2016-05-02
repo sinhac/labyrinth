@@ -143,6 +143,7 @@ class LabyrinthWindow (gobject.GObject):
         self.ui.get_widget('/MenuBar/ViewMenu/ShowToolbars/ShowMainToolbar').set_active(True)
         self.ui.get_widget('/MenuBar/ViewMenu/ShowToolbars/ShowFormatToolbar').set_active(True)
         self.ui.get_widget('/MenuBar/ViewMenu/UseBezier').set_active(utils.use_bezier_curves)
+        self.ui.get_widget('/MenuBar/ViewMenu/ShowArrowheads').set_active(utils.use_arrowheads)
 
         # Add in the extended info view
         self.extended_window = glade.get_widget('extended_window')
@@ -250,7 +251,9 @@ class LabyrinthWindow (gobject.GObject):
                 ('ShowMainToolbar', None, _('_Main'), None,
                  _('Show main toolbar'), self.show_main_toolbar_cb),
                 ('ShowFormatToolbar', None, _('_Format'), None,
-                 _('Show format toolbar'), self.show_format_toolbar_cb)]
+                 _('Show format toolbar'), self.show_format_toolbar_cb),
+                ('ShowArrowheads', None, _('_Arrowheads'), None,
+                 _('Show arrowheads'), self.use_arrowheads_cb)]
 
         ag = gtk.ActionGroup ('WindowActions')
         ag.set_translation_domain(gettext.textdomain())
@@ -313,6 +316,12 @@ class LabyrinthWindow (gobject.GObject):
             self.format_toolbar.show()
         else:
             self.format_toolbar.hide()
+            
+    def use_arrowheads_cb(self, arg):
+        utils.use_arrowheads = arg.get_active()
+        self.config_client.set_bool('/apps/labyrinth/arrowheads', utils.use_arrowheads)
+        self.MainArea.update_all_links()
+        self.MainArea.invalidate()
 
     def view_change_cb(self, base, activated):
         utils.use_bezier_curves = activated.get_current_value() == MMapArea.VIEW_BEZIER

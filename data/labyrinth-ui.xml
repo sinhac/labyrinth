@@ -29,6 +29,8 @@
 	  <menuitem action="ZoomIn"/>
 	  <menuitem action="ZoomOut"/>
 	  <menuitem action="Zoom100"/>
+	  <separator/>
+	  <menuitem action="ShowArrowheads"/>
     </menu>
     <menu action="ModeMenu">
       <menuitem action="Edit"/>

@@ -44,6 +44,7 @@ else:
 # FIXME: this is a no-go, but fast and efficient
 # global variables
 use_bezier_curves = False
+use_arrowheads = False
 default_colors = {
         "text" : (0.0, 0.0, 0.0),
         "fg" : (0.0, 0.0, 0.0),
