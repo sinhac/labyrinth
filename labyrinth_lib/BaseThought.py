@@ -172,8 +172,14 @@ class BaseThought (gobject.GObject):
         #    xfrom = self.ul[0]-((self.ul[0]-self.lr[0]) / 2.)
         #    xto = other.ul[0]-((other.ul[0]-other.lr[0]) / 2.)
 
-        yfrom = self.ul[1]-((self.ul[1]-self.lr[1]) / 2.)
-        yto = other.ul[1]-((other.ul[1]-other.lr[1]) / 2.)
+        #yfrom = self.ul[1]-((self.ul[1]-self.lr[1]) / 2.)
+        #yto = other.ul[1]-((other.ul[1]-other.lr[1]) / 2.)
+        if other.ul[1] > self.lr[1]:
+            yfrom = self.lr[1]
+            yto = other.ul[1]
+        else:
+            yfrom = self.ul[1]
+            yto = other.lr[1]
         return (xfrom, yfrom), (xto, yto)
 
     # All the rest of these should be handled within your thought

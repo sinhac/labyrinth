@@ -134,26 +134,30 @@ class Link (gobject.GObject):
             return
         cwidth = context.get_line_width ()
         context.set_line_width (self.strength)
-        
-        # drawing arrowhead
-        if utils.use_arrowheads:
-            arrow_coords = arrow_vertices(self.start, self.end)
-            context.move_to(self.end[0], self.end[1])
-            context.line_to(arrow_coords[0][0], arrow_coords[0][1])
-            context.stroke()
-            context.move_to(self.end[0], self.end[1])
-            context.line_to(arrow_coords[1][0], arrow_coords[1][1])
-            context.stroke()
-        
         context.move_to (self.start[0], self.start[1])
+        
+        # value will depend on whether using lines or curves
+        arrow_start = None
         
         if utils.use_bezier_curves:
             dx = self.end[0] - self.start[0]
             x2 = self.start[0] + dx / 2.0
             x3 = self.end[0] - dx / 2.0
             context.curve_to (x2, self.start[1], x3, self.end[1], self.end[0], self.end[1])
+            arrow_start = self.start # needs to be changed to something like the midpoint of the curve? not sure
         else:
             context.line_to(self.end[0], self.end[1])
+            arrow_start = self.start
+            
+        # drawing arrowhead
+        if utils.use_arrowheads:
+            arrow_coords = arrow_vertices(arrow_start, self.end)
+            context.move_to(self.end[0], self.end[1])
+            context.line_to(arrow_coords[0][0], arrow_coords[0][1])
+            context.stroke()
+            context.move_to(self.end[0], self.end[1])
+            context.line_to(arrow_coords[1][0], arrow_coords[1][1])
+            context.stroke()
         
         if self.selected:
             color = utils.selected_colors["bg"]
