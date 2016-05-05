@@ -86,6 +86,8 @@ class DrawingThought (BaseThought.ResizableThought):
         context.set_line_width (2)
         if len (self.points) > 0:
             for p in self.points:
+                context.arc(p.x, p.y, 5.0, 0, 2*math.pi)
+                context.fill()
                 if p.style == STYLE_BEGIN:
                     context.move_to (p.x, p.y)
                     r,g,b = utils.gtk_to_cairo_color(self.foreground_color)
@@ -311,6 +313,7 @@ class DrawingThought (BaseThought.ResizableThought):
                 p = self.DrawingPoint (transformed, STYLE_BEGIN, self.foreground_color)
             else:
                 p = self.DrawingPoint (transformed, STYLE_CONTINUE)
+
             self.points.append (p)
             self.ins_points.append (p)
         elif self.drawing == 2 and len (self.points) > 0:
