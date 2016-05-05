@@ -86,7 +86,7 @@ class DrawingThought (BaseThought.ResizableThought):
         context.set_line_width (2)
         if len (self.points) > 0:
             for p in self.points:
-                context.arc(p.x, p.y, 5.0, 0, 2*math.pi)
+                context.arc(p.x, p.y, utils.thickness, 0, 2*math.pi)
                 context.fill()
                 if p.style == STYLE_BEGIN:
                     context.move_to (p.x, p.y)

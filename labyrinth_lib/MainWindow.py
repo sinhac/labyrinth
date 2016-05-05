@@ -126,6 +126,12 @@ class LabyrinthWindow (gobject.GObject):
         self.background_widget.connect ("color-set", self.background_change_cb)
         self.foreground_widget = glade.get_widget('foreground_color_button')
         self.foreground_widget.connect ("color-set", self.foreground_change_cb)
+        self.thickness_widget = glade.get_widget('thickness_button')
+        self.thickness_widget.connect("value_changed", self.thickness_change_cb)
+        self.thickness_widget.set_numeric(True)
+        self.thickness_widget.set_range(1, 10)
+        self.thickness_widget.set_increments(1, 0.5)
+        self.thickness_widget.set_value(utils.thickness)
 
         self.cut = self.ui.get_widget ('/MenuBar/EditMenu/Cut')
         self.copy = self.ui.get_widget ('/MenuBar/EditMenu/Copy')
@@ -432,6 +438,10 @@ class LabyrinthWindow (gobject.GObject):
     def font_change_cb (self, button):
         if not self.extended.is_focus ():
             self.MainArea.set_font (button.get_font_name ())
+            
+    def thickness_change_cb(self, button):
+        utils.thickness = button.get_value()
+        self.MainArea.invalidate()
 
     def zoomin_cb(self, arg):
         if self.MainArea.scale_fac < 10:

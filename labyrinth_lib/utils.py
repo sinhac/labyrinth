@@ -45,6 +45,7 @@ else:
 # global variables
 use_bezier_curves = False
 use_arrowheads = False
+thickness = 1
 default_colors = {
         "text" : (0.0, 0.0, 0.0),
         "fg" : (0.0, 0.0, 0.0),
