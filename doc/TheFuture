@@ -26,7 +26,7 @@ General:
 --------
 ✓* New, better, shinier icon
 * Import from (at least) kdissert and freemind
-** Export to (at least) png and XML format (include images in tarball style?)
+✓** Export to (at least) png and XML format (include images in tarball style?)
   - Partly working (rudimentary png export)
 ** Printing support for maps - includes ps export
 * UI review.  Better interface.  HIG compliance
@@ -45,7 +45,7 @@ General:
   - Partly completed.  Moving multiple thoughts works.  Grouping is covered by
     "Background"ing option above
 * More clear primary thought / current root
-* Thought background colour changing
+✓* Thought background colour changing
 * Popup menus everywhere
 * Keyboard navigation of thoughts
 * Autoadd new thoughts (Possibly)
@@ -57,7 +57,7 @@ Text Thoughts:
 
 ✓** Selection of chunks of text
 * Different font sizes
-* Different font colours
+✓* Different font colours
 * Different fonts
 * Default to using current theme fonts
 ✓* Copy text to clipboard / paste text from clipboard
@@ -65,7 +65,7 @@ Text Thoughts:
 Image Thoughts:
 ---------------
 
-* Ability to change images
+✓* Ability to change images
 
 Drawing Thoughts:
 -----------------
