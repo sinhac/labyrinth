@@ -847,10 +847,13 @@ class MMapArea (gtk.DrawingArea):
 
         if self.is_bbox_selecting:
             # Draw the dragged selection box
-            xs = self.bbox_origin[0]
-            ys = self.bbox_origin[1]
-            xe = self.bbox_current[0] - xs
-            ye = self.bbox_current[1] - ys
+            # errors are popping up here about bbox_current not existing when font is changed - not sure why
+            try:
+                xe = self.bbox_current[0] - xs
+                ye = self.bbox_current[1] - ys
+            except AttributeError:
+                xe = self.coords[0] - xs
+                ye = self.coords[1] - ys
 
             xs,ys = context.user_to_device(xs, ys)
             xe,ye = context.user_to_device_distance(xe, ye)
@@ -1418,6 +1421,7 @@ class MMapArea (gtk.DrawingArea):
 
     def set_font(self, font_name):
         if len (self.selected) == 1 and hasattr(self.selected[0], "set_font"):
+            print self.selected[0]
             self.selected[0].set_font(font_name)
             self.font_name = font_name
             self.invalidate()
