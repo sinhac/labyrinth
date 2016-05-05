@@ -31,9 +31,9 @@ class MapList(object):
     COL_TITLE = 1
     COL_FNAME = 2
     COL_OPEN = 3
-    """Holds the list of maps. has a couple of convinience functions. Sings irish folk
+    """Holds the list of maps. has a couple of convenience functions. Sings Irish folk
 
-    this is (regarding to MCV) a model class.  """
+    this is (regarding to MVC) a model class.  """
     class MapCore(object):
         __slots__ = "__dict__ filename title nodes window index".split(" ")
         def __init__(self, index):
@@ -93,7 +93,7 @@ class MapList(object):
     tree_view_model = gtk.ListStore(int, str, str, str, 'gboolean')
 
     def __init__(self):
-        raise Exception("This class is a singleton full of classmethods, don't instantiate it.")
+        raise Exception("This class is a singleton full of class methods, don't instantiate it.")
 
     @classmethod
     def load_all_from_dir(cls,dir):

@@ -1152,6 +1152,29 @@ class MMapArea (gtk.DrawingArea):
 
     def global_key_handler (self, event):
         thought = None
+        '''
+        if (event.state & modifiers) & gtk.gdk.CONTROL_MASK:
+            if event.keyval == gtk.keysyms.b:  # bold
+                print "B"
+                #self.set_bold(not self.get_attribute("bold"))
+                print self.attributes
+                iterator = self.attributes.get_iterator()
+                while iterator.next():
+                    print "iterator", iterator
+                    print "font", iterator.get_font()
+                    print iterator.get_font()[0]
+                    print "attrs", iterator.get_attrs()
+            elif event.keyval == gtk.keysyms.i:  # italic
+                print "I"
+            elif event.keyval == gtk.keysyms.u:  # underline
+                print "U"
+            elif event.keyval == gtk.keysyms.t:  # strikethrough
+                print "T"
+            elif event.keyval == gtk.keysyms.less:  # decrease font size
+                print "<"
+            elif event.keyval == gtk.keysyms.greater: # increase font size
+                print ">"
+        '''
         if event.keyval == gtk.keysyms.Up:
             thought = self.find_related_thought (RAD_UP)
         elif event.keyval == gtk.keysyms.Down:
@@ -1361,6 +1384,7 @@ class MMapArea (gtk.DrawingArea):
         self.invalidate ()
 
     def set_bold (self, active):
+        print active
         if len(self.selected) != 1:
             return
         self.selected[0].set_bold (active)

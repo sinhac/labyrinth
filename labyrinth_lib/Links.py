@@ -171,7 +171,7 @@ class Link (gobject.GObject):
     def export (self, context, move_x, move_y):
         rem = False
         if not self.start or not self.end:
-            # Probably shouldn't do this, but its safe now
+            # Probably shouldn't do this, but it's safe now
             self.start = (self.parent.ul[0]-((self.parent.ul[0]-self.parent.lr[0]) / 2.), \
                                       self.parent.ul[1]-((self.parent.ul[1]-self.parent.lr[1]) / 2.))
             self.end = (self.child.ul[0]-((self.child.ul[0]-self.child.lr[0]) / 2.), \
